@@ -11,7 +11,7 @@ package Uf1_Estructurada;
 
 import java.util.Scanner;  // Importación de la clase Scanner para leer la entrada del usuario.
 
-public class primer_entrenamiento {
+public class PrimerEntramiento {
 
     public static void main (String[] args){
         Scanner Entrada = new Scanner(System.in);  // Se crea un objeto Scanner para capturar datos del usuario.

@@ -9,7 +9,7 @@ package Uf1_Estructurada;
 
 import java.util.Scanner;
 
-public class tercer_entrenamiento_intermedio {
+public class TercerEntrenamientoIntermedio {
 
     public static void main(String[] args){
         Scanner Entrada = new Scanner(System.in);  // Se crea un objeto Scanner para leer la entrada del usuario.

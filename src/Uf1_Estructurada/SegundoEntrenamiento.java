@@ -15,12 +15,9 @@ p.e: los dos números son pares (si es verdadero) / los dos numéros no son pare
 //paquete principal
 package Uf1_Estructurada;
 
-import java.lang.invoke.SwitchPoint;
-import java.security.spec.RSAOtherPrimeInfo;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class segundo_entrenamineto {
+public class SegundoEntrenamiento {
 
     public  static void main (String[] args){
 

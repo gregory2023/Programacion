@@ -6,7 +6,7 @@ package Uf1_Estructurada;
 
 import java.util.Scanner;
 
-public class Ejercicio_volumen_caja {
+public class ejercicioVolumenCaja {
 
     public static void main (String[]args){
 
