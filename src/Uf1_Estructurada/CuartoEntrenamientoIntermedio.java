@@ -19,7 +19,7 @@ public class CuartoEntrenamientoIntermedio {
 
         // Variables
         String palabra;  // Variable para almacenar la palabra ingresada por el usuario
-        int longitud = 0;  // Variable para almacenar la longitud de la palabra
+        int longitud = 0; // Variable para almacenar la longitud de la palabra
 
         // Entrada del usuario
         System.out.println("ingrese una palabra para calcular su longitud ");  // Se pide al usuario que ingrese una palabra
