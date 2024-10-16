@@ -19,14 +19,27 @@ public class EjercicioCincoJuegoAdivinanzaNumero {
 
         // Generar un número aleatorio entre 0 y 99
         aleatorio = (int)(Math.random() * 100);
-        // System.out.println(aleatorio); // Descomentar para ver el número aleatorio
+         System.out.println(aleatorio); // Descomentar para ver el número aleatorio
 
         System.out.println("Hola vamos a jugar a adivinar el numero!!");
 
         do {
-            // Pedir al usuario que ingrese un número
-            System.out.println("ingresa el numero que creas que es :) ");
-            numero = Entrada.nextInt(); // Leer el número ingresado
+
+            //comprobacion de numeros ingresados por el usuario
+            do {
+                // Pedir al usuario que ingrese un número
+                System.out.println("ingresa el numero que creas que es entre 1-99:) ");
+                numero = Entrada.nextInt(); // Leer el número ingresado
+
+                //impresion de mensaje a un valor incorrecto
+                if (numero <= 0 || numero >= 99){
+
+                    System.out.println("numero no valido intenta de nuevo ");
+                }
+
+
+            }while(numero == 0 || numero > 99 );
+
 
             // Comparar el número ingresado con el número aleatorio
             if (numero == aleatorio) {
@@ -44,7 +57,7 @@ public class EjercicioCincoJuegoAdivinanzaNumero {
         } while (numero != aleatorio); // Continuar hasta que el usuario adivine el número
 
         // Mostrar el número total de intentos realizados
-        System.out.println("El numero de intentos fue : " + contador + " veces gracias por jugar");
+        System.out.println("El numero de intentos validos  fue : " + contador + " veces gracias por jugar");
 
         // Cerrar el objeto Scanner (buena práctica)
         Entrada.close();
