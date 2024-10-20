@@ -10,7 +10,7 @@ public class PrimerEjercicioClase {
 
         for (int i = 1; i <=20 ; i++) {
 
-            System.out.println("hola , que haces ");
+            System.out.println("hola , que haces " + i);
             respuesta = Entrada.nextLine();
         }
 
