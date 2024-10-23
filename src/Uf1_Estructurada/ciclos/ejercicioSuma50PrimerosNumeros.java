@@ -44,9 +44,10 @@ public class ejercicioSuma50PrimerosNumeros {
 
         System.out.println("fibonachi ");
 
-        int n3 = 1 ;
+
         int n1 = 0;
         int n2= 1;
+        int n3 = 1 ;
 
         System.out.print(" 1 ");
         for (int i = 1; i <=15 ; i++) {

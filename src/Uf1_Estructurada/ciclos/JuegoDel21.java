@@ -44,7 +44,7 @@ public class JuegoDel21 {
             // Si el jugador decide pedir otra carta:
             if (decision.equals("si")) {
                 // Genera otra carta aleatoria y la suma al total acumulado.
-                numeroMaquina = (int)(Math.random() * 10) + 1;
+                numeroMaquina = (int)(Math.random() * 11) + 1;
                 suma = suma + numeroMaquina;
 
                 // Muestra el valor de la nueva carta y el total acumulado hasta el momento.
@@ -70,6 +70,7 @@ public class JuegoDel21 {
 
         // Si el jugador supera 21 puntos, pierde.
         if (suma >= 22) {
+
             System.out.println("Lo siento, has perdido.");
             System.out.println("Perdiste en la carta número " + contador);
         } else {

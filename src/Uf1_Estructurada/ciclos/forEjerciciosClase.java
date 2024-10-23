@@ -28,7 +28,7 @@ public class forEjerciciosClase {
         //ejercicioDiecisiete();
         //ejercicioDieciocho();
         //ejercicioDiecinueve();
-        ejercicioVeinte();
+        //ejercicioVeinte();
     }
 
     private static void ejercicioUno () {
@@ -71,7 +71,7 @@ public class forEjerciciosClase {
         }while(numero<=0);
 
 
-        for (int i = 1; i <= numero; i ++) {
+        for (int i = 1; i <= numero; i++) {
 
                 if (numero % i == 0){
 
@@ -81,11 +81,12 @@ public class forEjerciciosClase {
     }
 
     private static void ejercicioCinco (){
+        int numero=5;
         System.out.println("Imprime la tabla de multiplicar del 5.");
 
         for (int i = 1; i <=10 ; i++) {
 
-            System.out.println(i*5);
+            System.out.println( numero +  " x" + i + " = " + ( i*numero));
 
         }
     }
