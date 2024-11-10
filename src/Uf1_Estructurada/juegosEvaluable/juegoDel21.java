@@ -45,62 +45,93 @@ public class juegoDel21 {
     }
 
     private static int turnoMaquina() {
-
+        int sumatotal = 21;
+        int necesarioP;
+        float probabilidad;
+        int cartasJugadas = 10;  // Inicialmente, quedan 10 cartas posibles ya que cada jugador ya recibió una carta
+        int cartasParaPerder;
         boolean bandera = false;
 
-
-        if (juegoActivo == true){
-
+        if (juegoActivo && sumaMaquina < 21) { // Verifica si el juego está activo y si la suma es menor que 21.
             do {
-
-                System.out.println("quieres una carta nueva Amelie ");
-                numeroMaquina = (int) (Math.random() * 11) + 1;
+                System.out.println("¿Quieres una carta nueva AmelIA?");
+                int numeroMaquina = (int) (Math.random() * 11) + 1;
                 System.out.println("Carta nueva " + numeroMaquina);
                 sumaMaquina += numeroMaquina;
-                System.out.println("llevas un acomualado " + sumaMaquina);
 
-                if (sumaMaquina >=18 && sumaMaquina <= 20){
-                    System.out.println(" Amelie se planta con un acumulado de " + sumaMaquina );
-                    bandera=true;
-                    juegoActivo=false;
-                    if (plantaJugador == false){
+                if (sumaMaquina > 21) { // Verifica si se superó 21 inmediatamente después de sacar una nueva carta.
+                    System.out.println("AmelIA pierde con un acumulado de " + sumaMaquina);
+                    juegoActivo = false;
+                    System.out.println("El ganador es " + nombre + " con " + sumaJugador);
+                    nuevojuego();
+                    return 0; // Termina el turno de la máquina inmediatamente si pierde.
+                }
+
+                // Calcular el valor de carta máximo para no perder
+                necesarioP = sumatotal - sumaMaquina;
+
+                // Contar cuántas cartas provocarían perder si se superan 21 puntos
+                cartasParaPerder = 0;
+                for (int i = 1; i <= 11; i++) {
+                    if (i > necesarioP) {
+                        cartasParaPerder++;
+                    }
+                }
+
+                // Calcular probabilidad en base a las cartas restantes en el juego
+                if (necesarioP < 1) {
+                    probabilidad = 100;  // Probabilidad máxima si cualquier carta causaría pérdida
+                } else {
+                    probabilidad = ((float) cartasParaPerder / cartasJugadas) * 100;
+                }
+
+                // Validar que la probabilidad esté dentro del rango 0 - 100
+                if (probabilidad < 0) {
+                    probabilidad = 0;
+                } else if (probabilidad > 100) {
+                    probabilidad = 100;
+                }
+
+                cartasJugadas--;  // Reducir el número de cartas restantes en el mazo después de cada turno
+
+                System.out.println("Acumulado actual " + sumaMaquina);
+                System.out.println("Con una carta de valor " + necesarioP + " o más podrías perder.");
+                System.out.println("Probabilidad de perder en este momento: " + probabilidad);
+
+                // Condiciones para plantarse, pasar el turno o continuar
+                if (probabilidad >= 81.73 && probabilidad <=98.0 ) {
+                    System.out.println("AmelIA se planta con un acumulado de " + sumaMaquina);
+                    bandera = true;
+                    juegoActivo = false;
+                    if (!plantaJugador) {
                         turnoJugador();
-                    }else {
-                        System.out.println(" jugador se planto ");
+                    } else {
+                        System.out.println("El jugador se plantó también.");
                         sePlantan();
                     }
-
-                }else if (sumaMaquina >=15 && sumaMaquina <=17) {
-                    System.out.println("Amelie pasa el turno ");
-                    if (plantaJugador==true){
-                        System.out.println(" jugador ya se planto ");
-                        turnoMaquina();
-                    }else {
+                } else if (probabilidad >= 63.1 && probabilidad <=81.0) {
+                    System.out.println("AmelIA pasa el turno.");
+                    if (plantaJugador) {
+                        System.out.println("El jugador ya se plantó.");
+                        System.out.println("Probabilidad de perder en este momento: " + probabilidad);
+                        System.out.println("AmelIA se planta");
+                        sePlantan();
+                    } else {
                         turnoJugador();
                     }
-
-                }else if (sumaMaquina >21){
-
-                    System.out.println("Pierdes amelIA con un acumulado de " + sumaMaquina);
-                    bandera=true;
+                } else if (sumaMaquina == 21) {
+                    System.out.println("AmelIA gana con " + sumaMaquina);
+                    bandera = true;
                     juegoActivo = false;
-                    System.out.println("EL Ganador es " + nombre + " con " + sumaJugador);
-                    juegoActivo=false;
-                    nuevojuego();
-
-                }else if (sumaMaquina == 21){
-                    System.out.println(" Gana  amelIA con " + sumaMaquina);
-                    bandera=true;
-                    juegoActivo=false;
                     nuevojuego();
                 }
 
-            }while(bandera!=true);
+            } while (!bandera);
         }
-
-
         return 0;
     }
+
+
     private static int turnoJugador(){
         //Se declara la variable
         boolean bandera = false;
@@ -136,7 +167,6 @@ public class juegoDel21 {
                     System.out.println("quieres pasar turno SI/NO ? -- Al elegir  NO te plantas   " );
                     turno=Entrada.nextLine();
                     if (turno.equals("SI") || turno.equals("si")){
-                        System.out.println(plantaJugador);
                         turnoMaquina();
 
                     } else if(turno.equals("NO") || turno.equals("no")) {
@@ -165,19 +195,26 @@ public class juegoDel21 {
 
     private static void sePlantan() {
 
-        if (sumaJugador > sumaMaquina) {
-            System.out.println("FELICIDADE JUGADOR " + nombre + " ganas con " + sumaJugador);
-            juegoActivo=false;
-            nuevojuego();
-        } else if (sumaMaquina == sumaJugador) {
-            System.out.println(" ES UN EMPATE  "  );
-            juegoActivo=false;
-            nuevojuego();
-        } else {
-            System.out.println("GANA amelIA con el acumulado de " + sumaMaquina);
-            juegoActivo=false;
+        if(sumaJugador<=21 && sumaMaquina<=21)    {
+
+            if (sumaJugador > sumaMaquina) {
+                System.out.println("FELICIDADE JUGADOR " + nombre + " ganas con " + sumaJugador);
+                juegoActivo=false;
+                nuevojuego();
+            } else if (sumaMaquina == sumaJugador) {
+                System.out.println(" ES UN EMPATE  "  );
+                juegoActivo=false;
+                nuevojuego();
+            } else {
+                System.out.println("GANA amelIA con el acumulado de " + sumaMaquina);
+                juegoActivo=false;
+                nuevojuego();
+            }
+        }else {
+            System.out.println("alguno de los jugadores se planto con una suma mayor a 21 ");
             nuevojuego();
         }
+
     }
 
     private static void nuevojuego(){
@@ -188,7 +225,7 @@ public class juegoDel21 {
         if (decision.equals("si")|| decision.equals("SI")){
             numeroMaquina= 0 ;
              numeroJugador=0;
-             sumaMaquina=0;
+             sumaMaquina= 0;
              sumaJugador=0;
              contador =1;
             juegoActivo=true;
