@@ -51,6 +51,8 @@ public class batallaDeNumeros {
 
         for (int i = 1; i <=3; i++) {
 
+            System.out.println("----------------------------------------------------------------------\nturno de jugador");
+
             numeroJugador=(int)(Math.random()*12)+1;
             numereroMaquina=(int)(Math.random()*12)+1;
 
